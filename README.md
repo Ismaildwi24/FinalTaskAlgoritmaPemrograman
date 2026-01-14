@@ -1,4 +1,4 @@
-# 📘 Proram Untuk Pembelajaran Algoritma Pemrograman
+# 📘 Proram Pembelajaran Algoritma Pemrograman
 
 ## 👥 Identitas Kelompok
 
