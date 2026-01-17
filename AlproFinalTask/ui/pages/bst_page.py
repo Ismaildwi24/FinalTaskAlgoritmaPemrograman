@@ -25,7 +25,7 @@ except ImportError:
             self.setStyleSheet("background-color: #0f172a; border-right: 1px solid #1e293b;")
 
 COLOR_BG = "#0b1220"
-COLOR_ACCENT = "#00e5ff"  # Cyan Neon
+COLOR_ACCENT = "#00e5ff"
 COLOR_PANEL = "rgba(15, 23, 42, 0.8)"
 COLOR_TEXT_MAIN = "#ffffff"
 COLOR_TEXT_SEC = "#94a3b8"
@@ -267,7 +267,7 @@ class BSTPage(QWidget):
         content_layout.setContentsMargins(40, 40, 40, 40)
         content_layout.setSpacing(30)
         
-        # --- PANEL 1: EXPLANATION (Collapsible) ---
+        #PANEL 1: EXPLANATION
         panel_explain = CollapsibleNeonPanel("Algorithm Explanation")
         lbl_text = QLabel(
             "Binary Search Tree (BST) adalah struktur data pohon di mana setiap node "
@@ -281,13 +281,13 @@ class BSTPage(QWidget):
         panel_explain.add_content(lbl_text)
         content_layout.addWidget(panel_explain)
         
-        # --- PANEL 2: VISUAL DIAGRAM (Collapsible) ---
+        #PANEL 2: VISUAL DIAGRAM
         panel_visual = CollapsibleNeonPanel("Visual Diagram (Preview)")
         canvas = DiagramCanvas()
         panel_visual.add_content(canvas)
         content_layout.addWidget(panel_visual)
         
-        # --- PANEL 3: REAL-WORLD USE (Collapsible) ---
+        #PANEL 3: REAL-WORLD USE
         panel_use = CollapsibleNeonPanel("Real-world Use")
         lbl_use = QLabel(
             "• Indexing pada Database (mempercepat query)\n"
@@ -298,13 +298,13 @@ class BSTPage(QWidget):
         panel_use.add_content(lbl_use)
         content_layout.addWidget(panel_use)
         
-        # --- PANEL 4: INTERACTIVE SIMULATION ---
+        #PANEL 4: INTERACTIVE SIMULATION
         panel_sim = NeonPanel("Interactive Simulation")
         
         sim_layout = QHBoxLayout()
         sim_layout.setSpacing(20)
         
-        # COL 1: Input Control
+        #Input Control
         input_group = QVBoxLayout()
         lbl_in = QLabel("Insert Number(s)")
         lbl_in.setStyleSheet(f"color: {COLOR_ACCENT}; font-weight: bold;")
@@ -352,7 +352,7 @@ class BSTPage(QWidget):
         input_group.addLayout(btn_layout)
         input_group.addStretch()
         
-        # COL 2: Log / Output
+        #Log / Output
         log_group = QVBoxLayout()
         lbl_log = QLabel("Traversal Log (Inorder)")
         lbl_log.setStyleSheet(f"color: {COLOR_ACCENT}; font-weight: bold;")
@@ -376,7 +376,7 @@ class BSTPage(QWidget):
         panel_sim.layout.addLayout(sim_layout)
         content_layout.addWidget(panel_sim)
         
-        # --- PANEL 5: STEP-BY-STEP SOLUTION (Collapsible & Auto-Open) ---
+        #PANEL 5: STEP-BY-STEP SOLUTION
         panel_steps = CollapsibleNeonPanel("Step-by-Step Solution")
         panel_steps.toggle_content() 
         
@@ -395,7 +395,7 @@ class BSTPage(QWidget):
         panel_steps.add_content(self.txt_steps)
         content_layout.addWidget(panel_steps)
         
-        # --- PANEL 6: GENERATED VISUALIZATION (CANVAS) ---
+        #PANEL 6: GENERATED VISUALIZATION
         panel_tree = NeonPanel("Generated BST Visualization")
         self.tree_canvas = DynamicBSTCanvas()
         panel_tree.add_content(self.tree_canvas)
@@ -405,7 +405,7 @@ class BSTPage(QWidget):
         scroll_area.setWidget(content_widget)
         main_layout.addWidget(scroll_area)
 
-    # --- LOGIC METHODS ---
+    #LOGIC METHODS
     def handle_insert(self):
         text = self.txt_input.text().strip()
         if not text:
@@ -500,4 +500,5 @@ if __name__ == "__main__":
     window.resize(1200, 900)
     window.show()
     sys.exit(app.exec())
+
 
