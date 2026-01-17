@@ -4,9 +4,6 @@ import math
 import heapq
 import re
 
-# ==========================================
-# SETUP PATH UNTUK IMPORT
-# ==========================================
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(current_dir, "../../"))
@@ -20,7 +17,6 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QRectF, QPointF
 from PySide6.QtGui import QColor, QPainter, QPen, QBrush, QFont
 
-# Mencoba import Sidebar
 try:
     from ui.components.sidebar import Sidebar
 except ImportError:
@@ -30,23 +26,19 @@ except ImportError:
             self.setFixedWidth(80) 
             self.setStyleSheet("background-color: #0f172a; border-right: 1px solid #1e293b;")
 
-# ==========================================
 # KONFIGURASI STYLE
-# ==========================================
 COLOR_BG = "#0b1220"
-COLOR_ACCENT = "#00e5ff"   # Cyan Neon
-COLOR_HIGHLIGHT = "#ffd700" # Emas untuk Jalur Terpendek
+COLOR_ACCENT = "#00e5ff"   
+COLOR_HIGHLIGHT = "#ffd700" 
 COLOR_PANEL = "rgba(15, 23, 42, 0.8)"
 COLOR_TEXT_MAIN = "#ffffff"
 COLOR_TEXT_SEC = "#94a3b8"
 
-# ==========================================
 # LOGIC CLASS: DIJKSTRA SOLVER
-# ==========================================
 class GraphLogic:
     def __init__(self):
         self.nodes = set()
-        self.edges = {} # {u: {v: weight}}
+        self.edges = {} 
         self.steps_log = [] 
 
     def clear(self):
@@ -59,7 +51,6 @@ class GraphLogic:
         self.nodes.add(v)
         if u not in self.edges: self.edges[u] = {}
         if v not in self.edges: self.edges[v] = {}
-        # Undirected graph (dua arah)
         self.edges[u][v] = w
         self.edges[v][u] = w
 
@@ -133,9 +124,7 @@ class GraphLogic:
 
         return path, distances[end], distances
 
-# ==========================================
 # UI HELPER: NEON PANEL (STATIC)
-# ==========================================
 class NeonPanel(QFrame):
     def __init__(self, title=None, parent=None):
         super().__init__(parent)
@@ -169,9 +158,7 @@ class NeonPanel(QFrame):
     def add_content(self, widget):
         self.layout.addWidget(widget)
 
-# ==========================================
-# UI HELPER: COLLAPSIBLE NEON PANEL (DROPDOWN)
-# ==========================================
+# UI HELPER: (DROPDOWN)
 class CollapsibleNeonPanel(QFrame):
     def __init__(self, title, parent=None):
         super().__init__(parent)
@@ -232,9 +219,7 @@ class CollapsibleNeonPanel(QFrame):
         self.toggle_btn.setText(f"{arrow} {self.title_text} {status}")
         self.content_widget.setVisible(self.is_expanded)
 
-# ==========================================
 # WIDGET 1: STATIC DIAGRAM (PREVIEW)
-# ==========================================
 class StaticGraphCanvas(QWidget):
     def __init__(self):
         super().__init__()
@@ -277,9 +262,7 @@ class StaticGraphCanvas(QWidget):
         painter.drawText((lx+rx)//2, ly + 20, "3")
         painter.drawText((cx+rx)//2 + 10, (cy+ry)//2, "2")
 
-# ==========================================
 # WIDGET 2: DYNAMIC GRAPH CANVAS
-# ==========================================
 class DynamicGraphCanvas(QWidget):
     def __init__(self):
         super().__init__()
@@ -363,9 +346,7 @@ class DynamicGraphCanvas(QWidget):
             painter.drawText(QRectF(x-25, y-25, 50, 50), Qt.AlignCenter, str(node))
 
 
-# ==========================================
 # MAIN PAGE CLASS
-# ==========================================
 class DijkstraPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -392,7 +373,7 @@ class DijkstraPage(QWidget):
         content_layout.setContentsMargins(40, 40, 40, 40)
         content_layout.setSpacing(30)
         
-        # --- PANEL 1: EXPLANATION (Collapsible) ---
+        #PANEL 1: EXPLANATION 
         panel_explain = CollapsibleNeonPanel("Algorithm Explanation")
         lbl_text = QLabel(
             "Algoritma Dijkstra digunakan untuk menemukan jalur terpendek antara node "
@@ -405,13 +386,13 @@ class DijkstraPage(QWidget):
         panel_explain.add_content(lbl_text)
         content_layout.addWidget(panel_explain)
         
-        # --- PANEL 2: VISUAL PREVIEW (Collapsible) ---
+        #PANEL 2: VISUAL PREVIEW
         panel_visual = CollapsibleNeonPanel("Visual Diagram (Concept)")
         canvas = StaticGraphCanvas()
         panel_visual.add_content(canvas)
         content_layout.addWidget(panel_visual)
         
-        # --- PANEL 3: REAL-WORLD USE (Collapsible) ---
+        #PANEL 3: REAL-WORLD USE
         panel_use = CollapsibleNeonPanel("Real-world Use")
         lbl_use = QLabel(
             "• Navigasi GPS (Google Maps, Waze)\n"
@@ -422,12 +403,12 @@ class DijkstraPage(QWidget):
         panel_use.add_content(lbl_use)
         content_layout.addWidget(panel_use)
         
-        # --- PANEL 4: INTERACTIVE SIMULATION ---
+        #PANEL 4: INTERACTIVE SIMULATION
         panel_sim = NeonPanel("Interactive Simulation")
         sim_layout = QHBoxLayout()
         sim_layout.setSpacing(20)
         
-        # Inputs
+        #Inputs
         input_group = QVBoxLayout()
         
         lbl_edges = QLabel("Define Edges (Format: A-B:5, B-C:10)")
@@ -488,9 +469,9 @@ class DijkstraPage(QWidget):
         panel_sim.layout.addLayout(sim_layout)
         content_layout.addWidget(panel_sim)
         
-        # --- PANEL 5: STEP-BY-STEP SOLUTION (Collapsible & Auto-Open) ---
+        #PANEL 5: STEP-BY-STEP SOLUTION
         panel_steps = CollapsibleNeonPanel("Step-by-Step Solution")
-        panel_steps.toggle_content() # Default Open
+        panel_steps.toggle_content() 
         
         self.txt_steps = QTextEdit()
         self.txt_steps.setReadOnly(True)
@@ -507,7 +488,7 @@ class DijkstraPage(QWidget):
         panel_steps.add_content(self.txt_steps)
         content_layout.addWidget(panel_steps)
         
-        # --- PANEL 6: GENERATED VISUALIZATION ---
+        #PANEL 6: GENERATED VISUALIZATION
         panel_tree = NeonPanel("Generated Graph Visualization")
         self.graph_canvas = DynamicGraphCanvas()
         panel_tree.add_content(self.graph_canvas)
@@ -565,9 +546,7 @@ class DijkstraPage(QWidget):
                 if d != float('inf'):
                     self.txt_log.append(f"   - {node}: {d}")
 
-# ==========================================
 # TESTING
-# ==========================================
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = DijkstraPage()
@@ -575,3 +554,4 @@ if __name__ == "__main__":
     window.resize(1200, 900)
     window.show()
     sys.exit(app.exec())
+
