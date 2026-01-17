@@ -2,9 +2,6 @@ import sys
 import os
 import re
 
-# ==========================================
-# SETUP PATH UNTUK IMPORT
-# ==========================================
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(current_dir, "../../"))
@@ -18,7 +15,6 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, QRectF
 from PySide6.QtGui import QColor, QPainter, QPen, QBrush, QFont
 
-# Mencoba import Sidebar
 try:
     from ui.components.sidebar import Sidebar
 except ImportError:
@@ -28,27 +24,22 @@ except ImportError:
             self.setFixedWidth(80) 
             self.setStyleSheet("background-color: #0f172a; border-right: 1px solid #1e293b;")
 
-# ==========================================
-# KONFIGURASI STYLE
-# ==========================================
 COLOR_BG = "#0b1220"
 COLOR_ACCENT = "#00e5ff"  # Cyan Neon
 COLOR_PANEL = "rgba(15, 23, 42, 0.8)"
 COLOR_TEXT_MAIN = "#ffffff"
 COLOR_TEXT_SEC = "#94a3b8"
 
-# ==========================================
+
 # LOGIC CLASS: BST NODE
-# ==========================================
 class BSTNode:
     def __init__(self, val):
         self.val = val
         self.left = None
         self.right = None
 
-# ==========================================
+
 # UI HELPER: NEON PANEL (STATIC)
-# ==========================================
 class NeonPanel(QFrame):
     def __init__(self, title=None, parent=None):
         super().__init__(parent)
@@ -82,16 +73,15 @@ class NeonPanel(QFrame):
     def add_content(self, widget):
         self.layout.addWidget(widget)
 
-# ==========================================
-# UI HELPER: COLLAPSIBLE NEON PANEL (DROPDOWN)
-# ==========================================
+
+# UI HELPER (DROPDOWN)
 class CollapsibleNeonPanel(QFrame):
     """
     Panel Neon yang bisa dibuka/tutup (Dropdown) untuk menghemat ruang.
     """
     def __init__(self, title, parent=None):
         super().__init__(parent)
-        self.is_expanded = False # Default tertutup
+        self.is_expanded = False
         self.title_text = title
         
         self.setObjectName("CollapsiblePanel")
@@ -107,7 +97,7 @@ class CollapsibleNeonPanel(QFrame):
         self.main_layout.setContentsMargins(0, 0, 0, 0)
         self.main_layout.setSpacing(0)
         
-        # 1. Header (Tombol Toggle)
+        # 1. Header
         self.toggle_btn = QPushButton(f"▶ {title} (Klik untuk detail)")
         self.toggle_btn.setCursor(Qt.PointingHandCursor)
         self.toggle_btn.setStyleSheet(f"""
@@ -129,10 +119,10 @@ class CollapsibleNeonPanel(QFrame):
         self.toggle_btn.clicked.connect(self.toggle_content)
         self.main_layout.addWidget(self.toggle_btn)
         
-        # 2. Content Area (Container)
+        # 2. Content Area 
         self.content_widget = QWidget()
         self.content_layout = QVBoxLayout(self.content_widget)
-        self.content_layout.setContentsMargins(20, 0, 20, 20) # Padding content
+        self.content_layout.setContentsMargins(20, 0, 20, 20) 
         self.content_layout.setSpacing(10)
         
         # Default Sembunyi
@@ -149,9 +139,8 @@ class CollapsibleNeonPanel(QFrame):
         self.toggle_btn.setText(f"{arrow} {self.title_text} {status}")
         self.content_widget.setVisible(self.is_expanded)
 
-# ==========================================
+
 # WIDGET 1: STATIC DIAGRAM (PREVIEW)
-# ==========================================
 class DiagramCanvas(QWidget):
     """Visualisasi statis untuk panel penjelasan"""
     def __init__(self):
@@ -196,9 +185,8 @@ class DiagramCanvas(QWidget):
         painter.drawText(lx - 10, ly + 40, "< Kecil")
         painter.drawText(rx - 10, ry + 40, "> Besar")
 
-# ==========================================
-# WIDGET 2: DYNAMIC BST VISUALIZATION
-# ==========================================
+
+# WIDGET 2: BST VISUALIZATION
 class DynamicBSTCanvas(QWidget):
     """Canvas untuk menggambar BST secara dinamis"""
     def __init__(self):
@@ -218,13 +206,11 @@ class DynamicBSTCanvas(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
         
-        # Mulai menggambar dari tengah atas
         self.draw_node(painter, self.root, self.width() // 2, 40, self.width() // 4)
 
     def draw_node(self, painter, node, x, y, dx):
         vertical_gap = 60 
 
-        # 1. Gambar Garis ke Anak (Edges)
         pen_line = QPen(QColor(COLOR_ACCENT), 2)
         painter.setPen(pen_line)
 
@@ -240,7 +226,6 @@ class DynamicBSTCanvas(QWidget):
             painter.drawLine(x, y + 20, child_x, child_y - 20)
             self.draw_node(painter, node.right, child_x, child_y, dx * 0.6)
 
-        # 2. Gambar Node (Lingkaran)
         pen_node = QPen(QColor(COLOR_ACCENT), 3)
         brush_node = QBrush(QColor(0, 229, 255, 40)) 
         painter.setPen(pen_node)
@@ -249,22 +234,18 @@ class DynamicBSTCanvas(QWidget):
         radius = 20
         painter.drawEllipse(x - radius, y - radius, radius * 2, radius * 2)
 
-        # 3. Gambar Angka
         painter.setPen(QPen(QColor("white")))
         painter.setFont(QFont("Arial", 10, QFont.Bold))
         painter.drawText(QRectF(x - 25, y - 25, 50, 50), Qt.AlignCenter, str(node.val))
 
 
-# ==========================================
 # MAIN PAGE CLASS
-# ==========================================
 class BSTPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         
         self.root = None 
         
-        # --- Layout Utama ---
         main_layout = QHBoxLayout(self)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(0)
@@ -397,7 +378,7 @@ class BSTPage(QWidget):
         
         # --- PANEL 5: STEP-BY-STEP SOLUTION (Collapsible & Auto-Open) ---
         panel_steps = CollapsibleNeonPanel("Step-by-Step Solution")
-        panel_steps.toggle_content() # Open default
+        panel_steps.toggle_content() 
         
         self.txt_steps = QTextEdit()
         self.txt_steps.setReadOnly(True)
@@ -510,9 +491,8 @@ class BSTPage(QWidget):
             res.append(node.val)
             self._inorder(node.right, res)
 
-# ==========================================
+
 # BLOCK TESTING
-# ==========================================
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = BSTPage()
@@ -520,3 +500,4 @@ if __name__ == "__main__":
     window.resize(1200, 900)
     window.show()
     sys.exit(app.exec())
+
