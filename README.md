@@ -1,4 +1,4 @@
-# 📘 Proram Pembelajaran Algoritma Pemrograman
+# 📘 Program Pembelajaran Algoritma Pemrograman
 
 ## 👥 Identitas Kelompok
 
@@ -124,7 +124,7 @@ Aplikasi ini mengimplementasikan empat materi utama:
 Struktur folder proyek disusun secara modular untuk memisahkan **UI**, **logika algoritma**, dan **utilitas pendukung**, sehingga mudah dipahami dan dikembangkan.
 
 ```
-alpro_qt_app/
+AlproFinalTask/
 │
 ├── main.py                  # Entry point (run app)
 │
@@ -144,7 +144,7 @@ alpro_qt_app/
 │   │   ├── __init__.py
 │   │   ├── sidebar.py
 │   │   ├── card.py
-│   │   └── header.py
+│     │   └── header.py
 │   │
 │   └── styles/
 │       ├── __init__.py
@@ -167,21 +167,64 @@ alpro_qt_app/
     └── helpers.py
 ```
 
+---
+
 ## 📌 Catatan
 
 Aplikasi ini dikembangkan **murni untuk keperluan akademik** sebagai media pembelajaran Algoritma Pemrograman. Fokus utama aplikasi adalah **pemahaman konsep dan proses algoritma**, bukan optimasi performa tingkat lanjut.
 
 ---
 
-## 🚀 Penutup
+## 🚀 Cara Menjalankan Program
 
-Dengan adanya aplikasi ini, diharapkan mahasiswa dapat:
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi ini di komputer Anda:
 
-* Lebih mudah memahami algoritma
-* Melihat proses internal algoritma secara visual
-* Meningkatkan pemahaman konseptual melalui simulasi langsung
+1. **Pastikan Python Terinstal**
+   * Unduh dan instal Python versi terbaru dari [python.org](https://www.python.org/).
+   * Pastikan Python sudah ditambahkan ke PATH.
+
+2. **Instal Dependensi**
+   * Buka terminal di direktori proyek.
+   * Jalankan perintah berikut untuk menginstal dependensi:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+3. **Jalankan Aplikasi**
+   * Jalankan perintah berikut di terminal:
+     ```bash
+     python main.py
+     ```
+
+4. **Navigasi di Aplikasi**
+   * Gunakan sidebar untuk berpindah antar halaman.
+   * Pilih algoritma yang ingin dipelajari.
 
 ---
 
-**Mata Kuliah**: Algoritma Pemrograman
+## 🖼️ Tampilan Halaman Aplikasi
+
+Berikut adalah beberapa tampilan halaman dari aplikasi ini:
+
+1. **Halaman Awal (Welcome Page)**
+   ![Welcome Page](assets/images/welcome_page.png)
+
+2. **Halaman Menu Pembelajaran**
+   ![Menu Page](assets/images/menu_page.png)
+
+3. **Halaman Huffman Coding**
+   ![Huffman Page](assets/images/huffman_page.png)
+
+4. **Halaman Binary Search Tree**
+   ![BST Page](assets/images/bst_page.png)
+
+5. **Halaman Binary Traversal**
+   ![Traversal Page](assets/images/traversal_page.png)
+
+6. **Halaman Algoritma Dijkstra**
+   ![Dijkstra Page](assets/images/dijkstra_page.png)
+
+---
+
+**Mata Kuliah**: Algoritma Pemrograman  
 **Jenis Tugas**: Tugas Kelompok – Ujian Akhir Semester (UAS)
