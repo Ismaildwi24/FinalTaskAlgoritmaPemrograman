@@ -207,10 +207,10 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi ini di komputer Anda:
 Berikut adalah beberapa tampilan halaman dari aplikasi ini:
 
 1. **Halaman Awal (Welcome Page)**
-   ![Welcome Page](assets/images/welcome_page.png)
+   ![]([assets/images/welcome_page.png](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assests/images/welcome_page.png))
 
 2. **Halaman Menu Pembelajaran**
-   ![Menu Page](assets/images/menu_page.png)
+   ![](assets/images/menu_page.png)
 
 3. **Halaman Huffman Coding**
    ![Huffman Page](assets/images/huffman_page.png)
