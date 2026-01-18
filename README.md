@@ -207,22 +207,22 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi ini di komputer Anda:
 Berikut adalah beberapa tampilan halaman dari aplikasi ini:
 
 1. **Halaman Awal (Welcome Page)**
-   ![]([assets/images/welcome_page.png](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assests/images/welcome_page.png))
+   ![Welcome Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/welcome_page.png)
 
 2. **Halaman Menu Pembelajaran**
-   ![](assets/images/menu_page.png)
+   ![Menu Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/menu_page.png)
 
 3. **Halaman Huffman Coding**
-   ![Huffman Page](assets/images/huffman_page.png)
+   ![Huffman Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/huffman_page.png)
 
 4. **Halaman Binary Search Tree**
-   ![BST Page](assets/images/bst_page.png)
+   ![BST Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/bst_page.png)
 
 5. **Halaman Binary Traversal**
-   ![Traversal Page](assets/images/traversal_page.png)
+   ![Traversal Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/traversal_page.png)
 
 6. **Halaman Algoritma Dijkstra**
-   ![Dijkstra Page](assets/images/dijkstra_page.png)
+   ![Dijkstra Page](https://github.com/Ismaildwi24/FinalTaskAlgoritmaPemrograman/blob/main/AlproFinalTask/assets/images/dijkstra_page.png)
 
 ---
 
